@@ -4,7 +4,11 @@ require 'pry-byebug'
 require_relative './lib/models/atm_machine'
 require_relative './lib/models/bills'
 require_relative './lib/processors/fill'
+require_relative './lib/processors/withdraw'
 require_relative './lib/serializers/atm'
+require_relative './lib/services/withdrawal_calculator'
+require_relative './lib/services/balance_calculator'
+require_relative './lib/adapters/bills'
 
 ATM = AtmMachine.new
 
@@ -16,16 +20,16 @@ class App < Sinatra::Base
   post '/fill' do
     payload = JSON.parse(request.body.read, symbolize_names: true)
 
-    response = Processors::Fill.call(ATM, payload[:caixa])
+    response, errors = Processors::Fill.call(ATM, payload[:caixa])
 
-    response.to_json
+    Serializers::Atm.call(atm: response, errors: errors)
   end
 
-  # post '/withdraw' do
-  #   payload = JSON.parse(request.body.read, symbolize_names: true)
+  post '/withdraw' do
+    payload = JSON.parse(request.body.read, symbolize_names: true)
 
-  #   response = Processors::Withdraw.call(ATM, payload[:saque])
+    response, errors = Processors::Withdraw.call(ATM, payload[:saque])
 
-  #   response.to_json
-  # end
+    Serializers::Atm.call(atm: response, errors: errors)
+  end
 end

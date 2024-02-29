@@ -11,14 +11,18 @@ module Processors
     end
 
     def execute
-      if @atm.available
-        @errors << 'caixa-em-uso'
-      else
+      check_if_available
+
+      if @errors.empty?
         @atm.available = @payload[:caixaDisponivel]
         @atm.fill(@payload[:notas])
       end
 
-      Serializers::Atm.call(atm: @atm, errors: @errors)
+      [@atm, @errors]
+    end
+
+    def check_if_available
+      @errors << 'caixa-em-uso' if @atm.available
     end
   end
 end

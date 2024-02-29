@@ -12,11 +12,15 @@ module Serializers
 
     def serialize
       {
-        caixa: {
-          caixaDisponivel: @atm.available,
-          notas: @atm.bills.to_h
-        },
+        caixa: @atm.empty? ? {} : atm_info ,
         erros: @errors
+      }.to_json
+    end
+
+    def atm_info
+      {
+        caixaDisponivel: @atm.available,
+        notas: @atm.bills.to_h
       }
     end
   end
