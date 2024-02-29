@@ -1,10 +1,11 @@
 class AtmMachine
   attr_reader :bills
-  attr_accessor :available
+  attr_accessor :available, :last_withdrawal
 
   def initialize(available: false, bills: Bills.new)
-    @available = available
-    @bills     = bills
+    @available       = available
+    @bills           = bills
+    @last_withdrawal = {}
   end
 
   def fill(new_bills)
@@ -18,6 +19,6 @@ class AtmMachine
   end
 
   def empty?
-    Services::BalanceCalculator.call(@bills).zero?
+    @bills.to_h.empty?
   end
 end

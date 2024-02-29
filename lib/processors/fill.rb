@@ -21,6 +21,8 @@ module Processors
       [@atm, @errors]
     end
 
+    private
+
     def check_if_available
       @errors << 'caixa-em-uso' if @atm.available
     end

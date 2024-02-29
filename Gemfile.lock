@@ -40,18 +40,19 @@ GEM
     tilt (2.3.0)
 
 PLATFORMS
+  aarch64-linux
   arm64-darwin-23
 
 DEPENDENCIES
-  json (>= 1.8.3)
-  pry (~> 0.14.2)
+  json
+  pry
   pry-byebug
   puma
   sinatra
   sinatra-contrib
 
 RUBY VERSION
-   ruby 3.2.2p53
+   ruby 3.3.0p0
 
 BUNDLED WITH
    2.4.10

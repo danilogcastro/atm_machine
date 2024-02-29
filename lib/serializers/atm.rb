@@ -17,6 +17,8 @@ module Serializers
       }.to_json
     end
 
+    private
+    
     def atm_info
       {
         caixaDisponivel: @atm.available,

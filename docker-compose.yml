@@ -1,0 +1,11 @@
+version: '3'
+
+services:
+  app:
+    build:
+      context: .
+    command: bundle exec puma
+    volumes: 
+      - .:/app
+    ports:
+      - "3000:9292"
