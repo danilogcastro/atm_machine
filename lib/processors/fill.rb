@@ -7,11 +7,18 @@ module Processors
     def initialize(atm, payload)
       @atm     = atm
       @payload = payload
+      @errors  = []
     end
 
     def execute
-      # mudar o estado do caixa se necessário
-      # inserir as notas se o caixa estiver fora de uso
+      if @atm.available
+        @errors << 'caixa-em-uso'
+      else
+        @atm.available = @payload[:caixaDisponivel]
+        @atm.fill(@payload[:notas])
+      end
+
+      Serializers::Atm.call(atm: @atm, errors: @errors)
     end
   end
 end
