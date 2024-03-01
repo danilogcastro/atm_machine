@@ -24,6 +24,12 @@ Para rodar a suíte de teste, com o container `app` rodando, em uma nova janela 
 docker compose run app bundle exec rspec
 ```
 
+Caso deseje, é possível abrir um console interativo com o seguinte comando:
+
+```bash
+docker compose run app ruby bin/console
+```
+
 ## OPERAÇÃO 1 - ABASTECIMENTO 
 
 Para fazer um abastecimento no caixa, disponibilizando-o para uso:
