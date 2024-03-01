@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 source 'https://rubygems.org'
 
 ruby '3.3.0'
@@ -10,3 +8,5 @@ gem 'json'
 gem 'puma'
 gem 'pry'
 gem 'pry-byebug'
+gem 'rspec'
+gem "rack-test"

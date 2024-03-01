@@ -1,6 +1,5 @@
 module Serializers
   class Atm
-
     def self.call(...)
       new(...).serialize
     end
@@ -18,7 +17,7 @@ module Serializers
     end
 
     private
-    
+
     def atm_info
       {
         caixaDisponivel: @atm.available,
